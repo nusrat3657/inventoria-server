@@ -35,9 +35,9 @@ async function run() {
         const productCollection = client.db('inventoria').collection('products');
 
         app.get('/products', async (req, res) => {
-            const page = parseInt(req.query.page) || 1;  // current page number, default to 1
-            const limit = parseInt(req.query.limit) || 10;  // items per page, default to 10
-            const skip = (page - 1) * limit;  // items to skip for the current page
+            const page = parseInt(req.query.page) || 1;  
+            const limit = parseInt(req.query.limit) || 10;  
+            const skip = (page - 1) * limit;  
 
             const sortOption = req.query.sortOption || '';
             const brandFilter = req.query.brand || '';
@@ -57,7 +57,7 @@ async function run() {
             }
 
             if (searchQuery) {
-                query.productName = { $regex: searchQuery, $options: 'i' }; // case-insensitive search
+                query.productName = { $regex: searchQuery, $options: 'i' }; 
             }
 
             if (priceRange === 'low') {
