@@ -68,7 +68,7 @@ async function run() {
                 query.price = { $gt: 100 };
             }
 
-            // Sorting logic
+            // Sorting 
             const sort = {};
             if (sortOption === 'priceLowToHigh') {
                 sort.price = 1;
@@ -82,8 +82,8 @@ async function run() {
             const cursor = productCollection.find(query).sort(sort).skip(skip).limit(limit);
             const result = await cursor.toArray();
 
-            const totalItems = await productCollection.countDocuments(query);  // total number of items after filtering
-            const totalPages = Math.ceil(totalItems / limit);  // total number of pages
+            const totalItems = await productCollection.countDocuments(query);  
+            const totalPages = Math.ceil(totalItems / limit);  
 
             res.send({
                 products: result,
@@ -94,8 +94,6 @@ async function run() {
         });
 
 
-        // Send a ping to confirm a successful connection
-        // await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } finally {
         // Ensures that the client will close when you finish/error
